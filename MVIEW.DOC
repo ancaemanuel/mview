@@ -1,0 +1,35 @@
+
+                          Memory Viewer  version 1.7
+                          (c) by EmiSoft
+
+
+Deplasare cusor:  Left,Right,Tab
+
+Deplasare la adesa:
+  Up,  PgUp,Home,^PgUp  - o linie, o pagina, adresa 0, mai repede in sus.
+  Down,PgDn,End, ^PgDn  - o linie, o pagina, ultima adresa, mai repede. 
+  0,1,..,9,A,B,..,F     - deplasare la adresa x0000
+
+SpaceBar = FULL Page
+
+Esc = EXIT !
+
+
+Special:
+--------
+ I = Interrupts   ( de obicei virusii se incarca la 9Fxx:xxxx )
+ S = Search string
+ G = Search aGain
+^W = Write mode
+ M = Memory Control Block
+ T = Current Disk Transfer Address
+ $ = Current Stack Zone
+ # = DS
+ @ = CS:IP
+
+
+Rezident:
+---------
+Comanda:   MVIEW tsr
+
+Activare = Shift LEFT  +  Shift RIGHT

@@ -1,0 +1,76 @@
+Am scris acest program special pentru a detecta mai usor virusii din memorie.
+
+Reguli important de retinut !
+-----------------------------
+
+1. Un virus se activeaza DOAR ATUNCI cind este EXECUTAT (cu mai mult sau mai
+   putina voie a dvs.!!!) adica:
+     - executie MBR infectat ( MBR contine cod executabil )
+     - BOOT infectat
+     - fisier infectat
+
+2. Un virus nu poate fi activ in memorie decit daca are cel putin o
+   intrerupere redirectata spre el.
+
+Intreruperile frecvent "mincate" sunt:
+08 - IRQ0 = System Timer  (se apeleaza automat la fiecare 55ms)
+09 - IRQ1 = Keyboard      (se apeleaza la fiecare actionare a vreunei taste)
+13 - Disk   (BIOS)
+1C - User Timer Tick   (la fiecare 55ms)
+21 - DOS Functions
+25 - Absolute Disk Read
+26 - Absolute Disk Write
+
+Bineinteles ca mai pot fi si altele.
+
+In continuare voi folosi adresa fizica memoriei.
+Este o adresa pe 20 de biti si se calculeaza astfel:
+
+                  AdrFizica = Segment*16 + Offset.
+
+
+Locul de incarcare al unui virus (Adresa fizica) :
+
+00200..00400  Chiar in vectorii de inreruperi !!!
+              Exepmlu: Tiny178
+
+9F000..A0000  Marea majoritate se copiaza aici.
+
+A0000..C8000  Pot fi si aici, daca nu i-am intilnit nu inseamna ca nu exista.
+
+Chestiuni picante
+------------------
+Dark Avenger
+  SCANEAZA BIOS-ul !!! (de la C8000 in colo) si gaseste adresa pentru int13.
+  Bineinteles ca are nevoie totusi de o intrerupere ca sa se activeze.
+  Foloseste int21
+
+AI
+  Se copiaza tot la 9Fxxx dar pacaleste cautatorul neexperimentat
+  pentru ca redirecteaza intreruperile mai intii la
+  004F0..004FF zona BIOS pentru programe utilizator.
+
+
+Cum se scapa de virusi
+----------------------
+
+Intotdeauna trebuie o discheta (CURATA) de salvare!  Altfel ...
+Care sa contina:
+  1. Sistemul de operare
+  2. FORMAT
+  3. SYS
+  4. FDISK
+  5. Un antivirus
+
+Ce trebuie facut ?
+------------------
+  1. Porniti sistemul de pe discheta.
+     Si NU executati nimic de pe hard!
+  2. FDISK /MBR    - elimina virusii care se instaleaza in MBR
+  3. SYS c:        - elimina virusii din BOOT
+  4. Lansati antivirusul sa caute executabile infectate.
+  5. Ultima solutie:  FORMAT c: /s     - distruge tot.
+
+ATENTIE!
+  NU formatati hard-ul aiurea!
+  Doar cu FORMAT nu se elimina toti virusii.
